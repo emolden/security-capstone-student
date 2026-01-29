@@ -13,6 +13,9 @@ function Assert-Admin {
 function Install-Winget {
   Write-Host "winget not found. Installing winget (App Installer)..."
   
+  # Enable TLS 1.2 for downloads (required on older PowerShell versions)
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+  
   # Create temp directory for downloads
   $tempDir = Join-Path $env:TEMP "winget-install"
   New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
