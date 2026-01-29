@@ -86,8 +86,13 @@ A secrets management system for storing API keys, passwords, and tokens.
 ## 🚀 Quick Start (Windows / PowerShell)
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 18+ (or use the install script)
 - MongoDB running locally (or use the install script)
+
+### Install Node.js (if needed)
+```powershell
+.\install-node-windows.ps1
+```
 
 ### Install MongoDB (if needed)
 ```powershell
@@ -130,6 +135,7 @@ Each application includes a `threat-model/` folder with templates:
 ```
 security-capstone/
 ├── README.md                    # This file
+├── install-node-windows.ps1     # Node.js installer
 ├── install-mongodb-windows.ps1  # MongoDB installer
 ├── 01-fundflow/                 # Expense reimbursement app
 ├── 02-clinicqueue/              # Healthcare appointments
