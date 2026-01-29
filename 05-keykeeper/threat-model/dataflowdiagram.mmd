@@ -1,0 +1,38 @@
+---
+title: Data Flow Diagram - KeyKeeper
+---
+
+flowchart LR
+    subgraph External["External Entity"]
+        User((User<br/>Developer/DevOps/Admin))
+    end
+    
+    subgraph ClientTrust["Trust Boundary: Client"]
+        FE[Browser<br/>Vite/React]
+    end
+    
+    subgraph APITrust["Trust Boundary: API Server"]
+        API[API<br/>Express]
+    end
+    
+    subgraph DBTrust["Trust Boundary: Database"]
+        DB[(MongoDB<br/>Secrets)]
+    end
+    
+    User -->|"HTTP(S)"| FE
+    FE -->|"REST/JSON + JWT"| API
+    API -->|"queries (secrets)"| DB
+    DB -->|"results (plaintext)"| API
+    API -->|"responses (secrets)"| FE
+    FE -->|"rendered UI"| User
+    
+    %% Styling
+    classDef external fill:#f9f,stroke:#333,stroke-width:2px
+    classDef client fill:#bbf,stroke:#333,stroke-width:2px
+    classDef server fill:#bfb,stroke:#333,stroke-width:2px
+    classDef database fill:#fbb,stroke:#333,stroke-width:2px
+    
+    class User external
+    class FE client
+    class API server
+    class DB database
